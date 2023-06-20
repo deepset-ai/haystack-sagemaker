@@ -1,1 +1,2 @@
 farm-haystack[aws,preprocessing,opensearch] @ git+https://github.com/deepset-ai/haystack.git@sagemaker_layer
+git+https://github.com/deepset-ai/haystack.git#egg=rest_api&subdirectory=rest_api

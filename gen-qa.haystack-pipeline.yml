@@ -1,0 +1,49 @@
+version: none
+
+components:
+  - name: DocumentStore # How you want to call this node here
+    type: OpenSearchDocumentStore
+    params: # The node parameters
+      host: 172.17.0.2
+      port: 9200
+      scheme: https
+      username: admin
+      password: admin
+      verify_certs: false
+      embedding_dim: 384 # This parameter is required for the embedding_model
+  - name: Retriever
+    type: EmbeddingRetriever
+    params:
+      document_store: DocumentStore
+      top_k: 10
+      embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  - name: GenQAPoromptNode
+    type: PromptNode
+    params:
+      model_name_or_path: gpt-4
+      api_key: YOUR_OPEN_AI_KEY
+      default_prompt_template: "question-answering-with-references"
+  # - name: PreProcessor
+  #   type: PreProcessor
+  #   params:
+  #     clean_empty_lines: True
+  #     split_by: word
+  #     split_respect_sentence_boundary: True
+  #     split_length: 100
+  #     split_overlap: 20
+
+pipelines:
+  - name: query 
+    nodes:
+      - name: Retriever
+        inputs: [Query]
+      - name: GenQAPoromptNode
+        inputs: [Retriever]
+  # - name: indexing
+  #   nodes:
+  #     - name: PreProcessor
+  #       inputs: [File]
+  #     - name: Retriever
+  #       inputs: [PreProcessor]
+  #     - name: DocumentStore
+  #       inputs: [Retriever]

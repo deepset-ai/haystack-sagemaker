@@ -1,0 +1,35 @@
+services:
+
+  haystack-api:
+    image: "haystack-sagemaker"
+    build:
+      context: .
+      args:
+          HAYSTACK_BASE_IMAGE: deepset/haystack:cpu-v1.17.2
+    volumes:
+      - ./:/opt/pipelines
+    ports:
+      - 8000:8000
+    restart: on-failure
+    environment:
+      - DOCUMENTSTORE_PARAMS_HOST=opensearch
+      - PIPELINE_YAML_PATH=/opt/pipelines/gen-qa.haystack-pipeline.yml
+      - TOKENIZERS_PARALLELISM=false
+
+    depends_on:
+      opensearch:
+        condition: service_healthy
+
+  opensearch:
+    image: "opensearchproject/opensearch:1.0.1"
+    ports:
+      - 9200:9200
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    healthcheck:
+        test: curl --fail http://localhost:9200/_cat/health || exit 1
+        interval: 10s
+        timeout: 1s
+        retries: 10

@@ -1,6 +1,7 @@
 import json
 from haystack.nodes import PreProcessor
 from haystack.document_stores import OpenSearchDocumentStore
+from haystack.nodes import EmbeddingRetriever
 from haystack.utils import launch_opensearch
 from os import listdir
 from os.path import isfile, join
@@ -71,6 +72,9 @@ def index_docs(docs):
     """Push docs to docstore"""
     docstore = build_doc_store()
     docstore.write_documents(docs)
+    retriever = EmbeddingRetriever(document_store=docstore, embedding_model="sentence-transformers/all-MiniLM-L12-v2", devices=["mps"])
+    docstore.update_embeddings(retriever)
+
 
 
 def ingest_docs(split_length=100, split_overlap=20, basepath="data"):
