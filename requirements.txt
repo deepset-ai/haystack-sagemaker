@@ -1,0 +1,1 @@
+farm-haystack[aws,preprocessing,opensearch] @ git+https://github.com/deepset-ai/haystack.git@sagemaker_layer
