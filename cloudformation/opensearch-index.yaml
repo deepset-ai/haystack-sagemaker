@@ -1,0 +1,67 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Template for OpenSearch Service
+
+Parameters:
+  InstanceType:
+    Description: Instance Type for OpenSearch Cluster
+    Type: String
+    Default: m5.large.search
+
+  InstanceCount:
+    Description: Number of Instances for OpenSearch Cluster
+    Type: Number
+    Default: 2
+  
+  OSUsername:
+    Description: Username of the OS Admin
+    Type: String
+    Default: admin
+  
+  OSPassword:
+    Description: Password of the OS Admin
+    Type: String
+  
+  OSDomainName:
+    Description: Domain name for OpenSearch
+    Type: String
+    Default: opensearch-haystack-domain 
+    
+Outputs:
+  OpenSearchEndpoint:
+    Description: OpenSearch Endpoint URL
+    Value: !Sub ${OpenSearchDomain.DomainEndpoint}
+
+Resources:
+  OpenSearchDomain:
+    Type: 'AWS::OpenSearchService::Domain'
+    Properties:
+      DomainName: !Ref OSDomainName
+      EngineVersion: 'OpenSearch_2.5'
+      ClusterConfig:
+        InstanceType: !Ref InstanceType
+        InstanceCount: !Ref InstanceCount
+      AdvancedSecurityOptions:
+        Enabled: true
+        InternalUserDatabaseEnabled: true
+        MasterUserOptions: 
+          MasterUserName: !Ref OSUsername
+          MasterUserPassword: !Ref OSPassword
+      EncryptionAtRestOptions: 
+          Enabled: true
+      NodeToNodeEncryptionOptions:
+          Enabled: true
+      DomainEndpointOptions:
+          EnforceHTTPS: true
+      EBSOptions:
+        EBSEnabled: true
+        VolumeType: gp2
+        VolumeSize: 10
+      AccessPolicies:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: '*'
+            Action: 'es:*'
+            Resource: '*'
