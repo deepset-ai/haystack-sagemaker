@@ -1,12 +1,12 @@
 # Haystack Retrieval-Augmented Generative QA Pipelines with SageMaker JumpStart
 This repo is a showcase of how you can use models deployed on [SageMaker JumpStart](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html) in your Haystack Retrieval Augmented Generative AI pipelines.
 
-**Instructions:**
-[Starting an OpenSearch service](#starting-an-opensearch-service) 
-[Indexing Documents to OpenSearch](#the-indexing-pipeline-write-documents-to-opensearch) 
-[The RAG Pipeline](#the-rag-pipleine) 
+**Instructions:**  
+- [Starting an OpenSearch service](#starting-an-opensearch-service)  
+- [Indexing Documents to OpenSearch](#the-indexing-pipeline-write-documents-to-opensearch)   
+- [The RAG Pipeline](#the-rag-pipleine)   
 
-**The Repo Structure**
+**The Repo Structure**  
 This repository contains 2 runnable python scripts for indexing and the retrieval augmented pipeline respectively,  with instructions on how to run them below:
 
 `opensearch_indexing_pipeline.py`
