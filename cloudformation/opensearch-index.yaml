@@ -21,12 +21,22 @@ Parameters:
   OSPassword:
     Description: Password of the OS Admin
     Type: String
+  
+  OSDomainName:
+    Description: Domain name for OpenSearch
+    Type: String
+    Default: opensearch-haystack-domain 
+    
+Outputs:
+  OpenSearchEndpoint:
+    Description: OpenSearch Endpoint URL
+    Value: !Sub ${OpenSearchDomain.DomainEndpoint}
 
 Resources:
   OpenSearchDomain:
     Type: 'AWS::OpenSearchService::Domain'
     Properties:
-      DomainName: opensearch-domain
+      DomainName: !Ref OSDomainName
       EngineVersion: 'OpenSearch_2.5'
       ClusterConfig:
         InstanceType: !Ref InstanceType
