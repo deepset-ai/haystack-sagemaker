@@ -17,7 +17,7 @@ This repository contains 2 runnable python scripts for indexing and the retrieva
 
 ## The Data
 This showcase includes some documents we've crawled form the OpenSearch website and documentation pages. 
-You can index these into your own `OpenSearchDocumentStore` using `opensearch_indexing_pipeline.ipynb`.
+You can index these into your own `OpenSearchDocumentStore` using `opensearch_indexing_pipeline.py` or `notebooks/opensearch_indexing_pipeline.ipynb`.
 
 ## The Model
 For this demo, we deployed the `falcon-40b-instruct` model on SageMaker Jumpstart. Once deployed, you can use your own credentials in the `PromptNode`.
