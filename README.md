@@ -31,7 +31,7 @@ You may also change the dedault `OSDomainName` and `OSUsername` values, set to `
 ```bash
 aws cloudformation create-stack --stack-name HaystackOpensearch --template-body file://cloudformation/opensearch-index.yaml --parameters ParameterKey=InstanceType,ParameterValue=r5.large.search ParameterKey=InstanceCount,ParameterValue=3 ParameterKey=OSPassword,ParameterValue=Password123!
 ```
-You can then retrieve your OpenSearch host required to [Write documents](##write-documents) by running:
+You can then retrieve your OpenSearch host required to [Write documents](#writing-documents) by running:
 ```bash
 aws cloudformation describe-stacks --stack-name HaystackOpensearch --query "Stacks[0].Outputs[?OutputKey=='OpenSearchEndpoint'].OutputValue" --output text
 ```
