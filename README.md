@@ -1,5 +1,5 @@
-# Haystack Generative QA Pipelines with SageMaker Jumpstart
-This repo is a showcase of how you can use models deployed on AWS SageMaker Jumpstart in your Haystack Retrieval Augmented Generative AI pipelines.
+# Haystack Retrieval-Augmented Generative QA Pipelines with SageMaker JumpStart
+This repo is a showcase of how you can use models deployed on [SageMaker JumpStart](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html) in your Haystack Retrieval Augmented Generative AI pipelines.
 
 **Instructions:**
 [Starting an OpenSearch service](#starting-an-opensearch-service) 
