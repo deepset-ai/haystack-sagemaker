@@ -6,7 +6,10 @@ This showcase includes some documents we've crawled form the OpenSearch website 
 You can index these into your own `OpenSearchDocumentStore` using `opensearch_indexing_pipeline.ipynb`.
 
 ## The Model
-For this demo, we deployed the `falcon-40b-instruct` model on SageMaker Jumpstart. Once deployed, you can use your own credentials in the `PromptNode` in `gen_qa_pipeline.ipynb`
+For this demo, we deployed the `falcon-40b-instruct` model on SageMaker Jumpstart. Once deployed, you can use your own credentials in the `PromptNode`.
+To deploy a model on JumpStart, simply login to your AWS account and go to the Studio on SageMaker. 
+Navigate to JumpStart and deploy `falcon-40b-instruct`. This may take a few minutes:
+<img width="949" alt="image" src="https://github.com/deepset-ai/haystack-sagemaker/assets/15802862/b7a1adee-eb9c-4258-b3e0-bf5942f9c960">
 
 ## Indexing Documents to OpenSearch
 To run the scripts and notebooks provided here, first clone the repo and install the requirements.
@@ -27,6 +30,10 @@ You may also change the dedault `OSDomainName` and `OSUsername` values, set to `
 
 ```bash
 aws cloudformation create-stack --stack-name HaystackOpensearch --template-body file://cloudformation/opensearch-index.yaml --parameters ParameterKey=InstanceType,ParameterValue=r5.large.search ParameterKey=InstanceCount,ParameterValue=3 ParameterKey=OSPassword,ParameterValue=Password123!
+```
+You can then retrieve your OpenSearch host required to [Write documents](##write-documents) by running:
+```bash
+aws cloudformation describe-stacks --stack-name HaystackOpensearch --query "Stacks[0].Outputs[?OutputKey=='OpenSearchEndpoint'].OutputValue" --output text
 ```
 #### Option 2: Local OpenSearch service
 **Requirements:** Docker
