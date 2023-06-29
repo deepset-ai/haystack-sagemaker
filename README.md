@@ -4,7 +4,7 @@ This repo is a showcase of how you can use models deployed on [SageMaker JumpSta
 **Instructions:**  
 - [Starting an OpenSearch service](#starting-an-opensearch-service)  
 - [Indexing Documents to OpenSearch](#the-indexing-pipeline-write-documents-to-opensearch)   
-- [The RAG Pipeline](#the-rag-pipleine)   
+- [The RAG Pipeline](#the-rag-pipeline)   
 
 **The Repo Structure**  
 This repository contains 2 runnable Python scripts for indexing and the retrieval augmented pipeline respectively,  with instructions on how to run them below:
