@@ -15,7 +15,7 @@ This repository contains 2 runnable Python scripts for indexing and the retrieva
 
  We've also included notebooks for them both in `notebooks/` which you can optionally use to create and run each pipeline step by step.
 
-**Prerequisites**
+**Prerequisites**  
 To run the Haystack pipelines and use the models from SageMaker in this repository, you need an AWS account, and we suggest setting up [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) on your machine.
 
 
